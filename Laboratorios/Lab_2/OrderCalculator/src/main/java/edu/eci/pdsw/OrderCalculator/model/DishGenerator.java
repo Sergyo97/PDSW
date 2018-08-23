@@ -3,24 +3,24 @@ package edu.eci.pdsw.OrderCalculator.model;
 import org.quicktheories.core.*;
 import org.quicktheories.generators.*;
 
-import org.quicktheories.generators.SourceDSL.*;
+import static org.quicktheories.generators.SourceDSL.*;
 
 public class DishGenerator {
 	
-	public static Gen<Dish> Dishes(){
-		return null;
+	public static Gen<Dish> Dishes() {
+		return types().zip(names(), prices(), (type, name, price)
+				-> new Dish(type, name, price));
 	}
 	
-	public static Gen<DishType> type(){
+	public static Gen<DishType> types() {
 		return Generate.enumValues(DishType.class);
 	}
 	
-	private static Gen<String> names(){
-		return null;
+	public static Gen<Integer> prices() {
+		return integers().between(1000, 90000);
 	}
 	
-	private static Gen<Integer> prices(){
-		return 
+	public static Gen<String> names() {
+		return strings().betweenCodePoints(65, 122).ofLengthBetween(5, 30);
 	}
-
 }
