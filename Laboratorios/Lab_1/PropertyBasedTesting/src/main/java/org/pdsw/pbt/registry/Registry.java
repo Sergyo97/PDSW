@@ -18,7 +18,15 @@ public class Registry {
     }
 
     public Optional<String> generateCertificate(Person person) {
-
-        return Optional.empty();
+    	Optional<String> certificate;
+    	String certification = person.toString() + "is certicated.";
+    	
+    	if (registerVoter(person) == RegisterResult.VALID) {
+    		certificate = Optional.of(certification);
+    	}else {
+    		certificate = Optional.empty();
+    	}
+    	System.out.println(certification);
+    	return certificate;
     }
 }

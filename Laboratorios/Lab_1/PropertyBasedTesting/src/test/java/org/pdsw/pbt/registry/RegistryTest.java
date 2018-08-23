@@ -5,6 +5,8 @@ import org.pdsw.pbt.PBTClassifier;
 
 import static org.quicktheories.QuickTheory.qt;
 
+import java.util.Optional;
+
 public class RegistryTest {
 
     @Test
@@ -39,11 +41,24 @@ public class RegistryTest {
 
 	@Test
 	public void validateCertificate() {
+		Registry registry = new Registry();
+		PBTClassifier pbtclassifier = new PBTClassifier("validateCertificate");
+		
 	        qt()
 	            .forAll(PersonGenerator.persons())
 	            .check(voter ->  {
-	                // TODO: Add property tests
-	                return true;
+	            	
+	                RegisterResult result = registry.registerVoter(voter);
+	                Optional<String> certificate = registry.generateCertificate(voter);
+	            	
+	                if (result == RegisterResult.VALID) {
+	                	pbtclassifier.collect("Certificate valid");
+	                	return certificate.isPresent() == true;
+	                }else {
+	                	pbtclassifier.collect("Certificate invalid");
+	                	return certificate.isPresent() == false;
+	                }
 	            });
+	        pbtclassifier.results();
     }
 }
