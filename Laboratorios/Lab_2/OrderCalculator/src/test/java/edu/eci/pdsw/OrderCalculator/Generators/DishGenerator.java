@@ -1,7 +1,10 @@
-package edu.eci.pdsw.OrderCalculator.model;
+package edu.eci.pdsw.OrderCalculator.Generators;
 
 import org.quicktheories.core.*;
 import org.quicktheories.generators.*;
+
+import edu.eci.pdsw.OrderCalculator.model.Dish;
+import edu.eci.pdsw.OrderCalculator.model.DishType;
 
 import static org.quicktheories.generators.SourceDSL.*;
 
