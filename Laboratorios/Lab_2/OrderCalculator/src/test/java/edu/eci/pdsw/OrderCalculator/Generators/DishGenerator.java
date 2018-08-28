@@ -11,8 +11,8 @@ import static org.quicktheories.generators.SourceDSL.*;
 public class DishGenerator {
 	
 	public static Gen<Dish> Dishes() {
-		return types().zip(names(), prices(), (type, name, price)
-				-> new Dish(type, name, price));
+		return types().zip(names(), prices(), calories(), (type, name, price, calories)
+				-> new Dish(type, name, price, calories));
 	}
 	
 	public static Gen<DishType> types() {
@@ -25,5 +25,9 @@ public class DishGenerator {
 	
 	public static Gen<String> names() {
 		return strings().betweenCodePoints(65, 122).ofLengthBetween(5, 30);
+	}
+	
+	public static Gen<Integer> calories() {
+		return integers().between(0, 3000);
 	}
 }

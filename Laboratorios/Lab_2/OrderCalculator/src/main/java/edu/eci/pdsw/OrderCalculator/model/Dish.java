@@ -4,11 +4,13 @@ public class Dish {
 	private DishType type;
     private int price;
     private String name;
-
-    public Dish(DishType type, String name, int price) {
+    private int calories;
+    
+    public Dish(DishType type, String name, int price, int calories) {
         this.type = type;
         this.name = name;
         this.price = price;
+        this.calories = calories;
     }
 
     public DishType getType() {
@@ -22,4 +24,8 @@ public class Dish {
     public int getPrice() {
         return price;
     }	
+    
+    public int getCalories() {
+    	return calories;
+    }
 }

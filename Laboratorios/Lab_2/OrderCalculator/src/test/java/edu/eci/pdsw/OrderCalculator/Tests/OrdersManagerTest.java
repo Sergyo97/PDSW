@@ -1,10 +1,17 @@
 package edu.eci.pdsw.OrderCalculator.Tests;
 
 import org.junit.Test;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import edu.eci.pdsw.OrderCalculator.model.*;
 import edu.eci.pdsw.OrderCalculator.services.OrdersManager;
 import edu.eci.pdsw.OrderCalculator.PBTClassifier;
 import edu.eci.pdsw.OrderCalculator.Generators.*;
+import edu.eci.pdsw.OrderCalculator.calculator.impl.BasicBillCalculator;
+import edu.eci.pdsw.OrderCalculator.injectors.ManagementModule;
+
 import static org.quicktheories.QuickTheory.qt;
 
 public class OrdersManagerTest {
@@ -36,7 +43,8 @@ public class OrdersManagerTest {
 		qt()
 		.forAll(OrderGenerator.orders())
 		.check(orden -> {
-			OrdersManager manager= new OrdersManager();
+			Injector injector = Guice.createInjector(new ManagementModule());
+			OrdersManager manager= injector.getInstance(OrdersManager.class);
 			manager.placeOrder(orden);
 			try {
 				if(manager.findOrder(0)==orden ) {
@@ -61,7 +69,8 @@ public class OrdersManagerTest {
 		qt()
 		.forAll(OrderGenerator.orders())
 		.check(orden -> {
-			OrdersManager manager= new OrdersManager();
+			Injector injector = Guice.createInjector(new ManagementModule());
+			OrdersManager manager= injector.getInstance(OrdersManager.class);
 			manager.placeOrder(orden);
 			int result=0;
 			for(Dish d:orden.getDishes()) {
