@@ -5,7 +5,6 @@ import java.util.*;
 import com.google.inject.Inject;
 
 import edu.eci.pdsw.OrderCalculator.calculator.BillCalculator;
-import edu.eci.pdsw.OrderCalculator.calculator.impl.BasicBillCalculator;
 import edu.eci.pdsw.OrderCalculator.model.*;
 
 public class OrdersManager {

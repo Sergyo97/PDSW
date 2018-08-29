@@ -12,15 +12,14 @@ public class TaxBillCalculator implements BillCalculator{
 	TaxValidator validator;
 	
 	@Inject
-	TaxBillCalculator(TaxValidator validator) {
+	public TaxBillCalculator(TaxValidator validator) {
 		this.validator = validator;
 	}
 	
 	public int calculatePrice(Order o) {
         int total=0;
         for (Dish p : o.getDishes()){
-            total += p.getPrice() * validator.getPercentage(p);          
-            
+            total += p.getPrice() * validator.getPercentage(p);            
         }
         return total;
     }

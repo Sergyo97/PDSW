@@ -7,7 +7,7 @@ import java.util.*;
 
 public class OrderGenerator {
 	private static Gen<List<Dish>> generateListPlates(){
-		return lists().of(DishGenerator.Dishes()).ofSizeBetween(1, 20);
+		return lists().of(DishGenerator.Dishes()).ofSizeBetween(0, 20);
 	}
 
 	public static Gen<Order> orders(){

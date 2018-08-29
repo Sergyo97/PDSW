@@ -9,7 +9,6 @@ import edu.eci.pdsw.OrderCalculator.model.*;
 import edu.eci.pdsw.OrderCalculator.services.OrdersManager;
 import edu.eci.pdsw.OrderCalculator.PBTClassifier;
 import edu.eci.pdsw.OrderCalculator.Generators.*;
-import edu.eci.pdsw.OrderCalculator.calculator.impl.BasicBillCalculator;
 import edu.eci.pdsw.OrderCalculator.injectors.ManagementModule;
 
 import static org.quicktheories.QuickTheory.qt;
@@ -27,9 +26,11 @@ public class OrdersManagerTest {
 				if(orden.getDishes().size()>0) {
 					pbtclassifier.collect("Order not Empty");
 					return true;
+				}else if (orden.getDishes().size() == 0){
+					pbtclassifier.collect("Order Empty");
+					return true;
 				}
-				pbtclassifier.collect("Order Empty");
-				return false;				
+				return false;
 			});
 		pbtclassifier.results();
 	}
@@ -61,6 +62,10 @@ public class OrdersManagerTest {
 	}
 	
 	
+	/**
+	 * Este método funciona correctamente si en la configuración de la clase ManagementModue injectamos BasicBillCalculator.
+	 * Esto debido a que el método calculateOrderTotal es de dicha clase.
+	 */
 	@Test
 	public void calculateOrder() {
 		PBTClassifier pbtclassifier = new PBTClassifier("findOrder");

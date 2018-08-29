@@ -4,6 +4,7 @@ import com.google.inject.AbstractModule;
 
 import edu.eci.pdsw.OrderCalculator.calculator.BillCalculator;
 import edu.eci.pdsw.OrderCalculator.calculator.impl.BasicBillCalculator;
+import edu.eci.pdsw.OrderCalculator.calculator.impl.TaxBillCalculator;
 import edu.eci.pdsw.OrderCalculator.calculator.impl.TipBillCalculator;
 import edu.eci.pdsw.OrderCalculator.validator.TaxValidator;
 import edu.eci.pdsw.OrderCalculator.validator.impl.SpecialRegimeTaxValidator;
@@ -14,10 +15,9 @@ public class ManagementModule extends AbstractModule {
 	 @Override 
 	 protected void configure() {
 
+		 bind(BillCalculator.class).to(BasicBillCalculator.class);
 		 bind(TaxValidator.class).to(SpecialRegimeTaxValidator.class);
 		 
-		 bind(BillCalculator.class).to(BasicBillCalculator.class);
-		 
 	 }
-
+	 
 }
