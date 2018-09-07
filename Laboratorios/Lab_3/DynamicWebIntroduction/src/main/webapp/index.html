@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Hello Servlet</h1>
+        
+        <form action="/helloServlet" method="post">
+        	Name: <input type="text" name="name"><br>
+        	<input type="submit" value="Submit">
+        </form>
+        
+        <h1>PDSW Servlet</h1>
+        
+        <form name="pdswForm" action="/pdswServlet" onsubmit="return idValidator()" method="get">
+        	Id: <input type="text" name="id" required><br>
+        	<input type="submit" value="Submit">
+        </form>
+        
+        <script>
+			function idValidator() {
+			    var x = document.forms["pdswForm"]["id"].value;
+			    if (isNaN(x)) {
+			        alert("The inserted ID must be a number.");
+			        return false;
+			    }
+			}
+		</script>
+    </body>
+</html>
+

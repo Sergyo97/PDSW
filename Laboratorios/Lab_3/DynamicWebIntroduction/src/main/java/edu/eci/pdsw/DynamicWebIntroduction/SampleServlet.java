@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(
-    urlPatterns = "/helloServlet"
-)
+		urlPatterns = "/helloServlet"
+		)
 public class SampleServlet extends HttpServlet{
-    static final long serialVersionUID = 35L;
+	static final long serialVersionUID = 35L;
 
-    @Override
-   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       Writer responseWriter = resp.getWriter();
-       Optional<String> optName = Optional.ofNullable(req.getParameter("name"));
-       String name = optName.isPresent() && !optName.get().isEmpty() ? optName.get() : "";
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Writer responseWriter = resp.getWriter();
+		Optional<String> optName = Optional.ofNullable(req.getParameter("name"));
+		String name = optName.isPresent() && !optName.get().isEmpty() ? optName.get() : "";
 
-       resp.setStatus(HttpServletResponse.SC_OK);
-       responseWriter.write("Hello" + name + "!");
-       responseWriter.flush();
-   }
+		resp.setStatus(HttpServletResponse.SC_OK);
+		responseWriter.write("Hello " + name + "!");
+		responseWriter.flush();
+	}
+	
 }

@@ -1,0 +1,11 @@
+¿Cuál es la dferencia entre usar un GET y usar un POST?
+ // El GET envía los datos usando la URL, el POST no deja ver cómo fueron enviados los datos.
+
+¿Qué información retorna la url?
+ // Es una lista de TODOs
+ 
+¿Qué formato tiene?
+ // Muestra la información de cada uno de los TODO en cascada.
+ 
+¿Qué tiene de diferente con la url donde se envía un parámetro (por ejemplo https://jsonplaceholder.typicode.com/todos/1)?
+ // Retorna todos los TODOs que están registrados en la base. 
