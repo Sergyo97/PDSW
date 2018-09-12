@@ -1,5 +1,7 @@
 package edu.eci.pdsw.PrimeFaces;
 
+import java.util.ArrayList;
+
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -11,18 +13,21 @@ public class BackingBean {
 	
 	private int number, attemps, award;
 	private Integer temp;
+	private ArrayList<Integer> listOfNumbers;
+	private String message;
 	private boolean win;
-	
+
 	public BackingBean() {
 		restart();
 	}
 
-	public int getNumber() {
-		return number;
+	public int getNumber() {		
+		return number;		
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	public void setNumber(int number) {		
+		if(!win)
+			this.number = number;
 	}
 
 	public int getAttemps() {
@@ -30,7 +35,8 @@ public class BackingBean {
 	}
 
 	public void setAttemps(int attemps) {
-		this.attemps = attemps;
+		if (!win)
+			this.attemps = attemps;
 	}
 
 	public int getAward() {
@@ -38,17 +44,37 @@ public class BackingBean {
 	}
 
 	public void setAward(int award) {
-		this.award = award;
+		if(!win)
+			this.award = award;
 	}
 	
 	public Integer getTemp() {
-		return temp;
+		return temp;		
 	}
 
 	public void setTemp(Integer temp) {
-		this.temp = temp;
+		if(!win)
+			this.temp = temp;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		if(!win)
+			this.message = message;
+	}
+	
+	public ArrayList<Integer> getListOfNumbers() {
+		return listOfNumbers;
+	}
+
+	public void setListOfNumbers(ArrayList<Integer> listOfNumbers) {
+		if (!win)
+			this.listOfNumbers = listOfNumbers;
+	}
+	
 	public boolean isWin() {
 		return win;
 	}
@@ -58,10 +84,14 @@ public class BackingBean {
 	}
 	
 	public void guess() {
-		attemps += 1;
+		if(!win) {
+			attemps += 1;
+			listOfNumbers.add(temp);
+		}		
 		if(this.number == this.temp) {
-			win = true;			
-		}else {
+			message = "You win! " + "The number was: " + temp;
+			win = true;
+		}else if (award > 0) {
 			award -= 10000;
 		}
 	}
@@ -71,6 +101,8 @@ public class BackingBean {
 		attemps = 0;
 		award = 100000;
 		temp = null;
+		message = "Playing...";
+		listOfNumbers = new ArrayList<Integer>();
 		win = false;
 	}
 	

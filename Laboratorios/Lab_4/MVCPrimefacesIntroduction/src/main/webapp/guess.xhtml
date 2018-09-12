@@ -8,16 +8,22 @@
 	<h:form id="guess_form">
 		<p:outputLabel value="#{guessBean.number}" style="display:none"/>
 		<p:inputText id="number1" value="#{guessBean.temp}" required="true" label="Firstname" />
-		<p></p>
+		<p/>
 		<p:outputLabel value="#{guessBean.attemps}"/>
-		<p></p>
-		<p:outputLabel value="#{guessBean.win}"/>
-		<p></p>
+		<p/>
+		<p:outputLabel value="#{guessBean.message}"/>
+		<p/>
 		<p:outputLabel value="#{guessBean.award}"/>
-		<p></p>
+		<p/>
 		<p:commandButton value="Number submit" id="number" update="guess_form" actionListener="#{guessBean.guess()}"/>
-		<p></p>
+		<p/>
 		<p:commandButton value="Restart game" id="restart" update="guess_form" actionListener="#{guessBean.restart()}"/>
+		<p/>
+		<p:dataTable var="num" value="#{guessBean.listOfNumbers}">
+			<p:column headerText="Attemps">
+				<h:outputText value="#{num}"/>
+			</p:column>
+		</p:dataTable>
 	</h:form>
 </h:body>
 
