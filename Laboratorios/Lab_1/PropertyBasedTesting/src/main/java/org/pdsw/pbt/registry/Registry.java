@@ -20,7 +20,6 @@ public class Registry {
     public Optional<String> generateCertificate(Person person) {
     	Optional<String> certificate;
     	String certification = person.toString() + "is certicated.";
-    	
     	if (registerVoter(person) == RegisterResult.VALID) {
     		certificate = Optional.of(certification);
     	}else {

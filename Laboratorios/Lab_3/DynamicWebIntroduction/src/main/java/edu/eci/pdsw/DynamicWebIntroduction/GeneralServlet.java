@@ -21,7 +21,7 @@ public class GeneralServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 37L;
 
-	/*@Override
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Writer responseWriter = resp.getWriter();
 		try {
@@ -41,7 +41,7 @@ public class GeneralServlet extends HttpServlet{
 				responseWriter.flush();
 			}
 		}
-	}*/
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

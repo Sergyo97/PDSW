@@ -18,7 +18,7 @@ public class RegistryTest {
             .forAll(PersonGenerator.persons())
             .check(voter ->  {
                 RegisterResult result = registry.registerVoter(voter);
-            	
+                
             	if (voter.getName().length() < 10 || voter.getName().length() > 30) {
             		pbtClassifier.collect("Invalid for vote");
             		return result == RegisterResult.INVALID_NAME;

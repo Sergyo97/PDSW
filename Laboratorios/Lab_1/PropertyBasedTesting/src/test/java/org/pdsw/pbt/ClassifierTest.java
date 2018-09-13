@@ -16,12 +16,11 @@ public class ClassifierTest {
       PBTClassifier pbtClassifier = new PBTClassifier("addingTwoPositiveIntegersAlwaysGivesAPositiveInteger");
 
       qt()
-      .forAll(integers().between(-1, 20)
-             , integers().between(-1, 20)
-             , integers().between(-1, 20))
+      .forAll(integers().between(0, 20)
+             , integers().between(0, 20)
+             , integers().between(0, 20))
       .check((a,b,c) -> {
             TriangleType classification = classifier.classify(a, b, c);
-
             if (a <= 0 || b <= 0 || c <= 0) {
               pbtClassifier.collect("Not a triangle");              
               return classification == TriangleType.NotATriangle;

@@ -6,7 +6,8 @@ import static org.quicktheories.generators.SourceDSL.*;
 import java.util.*;
 
 public class OrderGenerator {
-	private static Gen<List<Dish>> generateListPlates(){
+	
+	public static Gen<List<Dish>> generateListPlates(){
 		return lists().of(DishGenerator.Dishes()).ofSizeBetween(0, 20);
 	}
 
