@@ -5,8 +5,17 @@
 
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper">
 
-	<select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
-		SENTENCIA SQL
+	<select parameterType="map" id="consultClients" resultMap="ClientResult">
+		SELECT * FROM bd.VI_CLIENTES;
 	</select>
+
+	<resultMap type='Client' id='ClientResult'>
+		<id property='document' column='documento' />
+		<result property='name' column='nombre' />
+		<result property='phone' column='telefono' />
+		<result property='address' column='direccion' />
+		<result property='email' column='email' />
+		<result property='banned' column='vetado' />
+	</resultMap>
 
 </mapper>

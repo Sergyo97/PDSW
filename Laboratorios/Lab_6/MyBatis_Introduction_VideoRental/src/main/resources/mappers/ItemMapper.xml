@@ -5,7 +5,19 @@
   
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper">
 
+	<select parameterType="map" id="consultItem" resultMap="ItemResult">
+		SELECT * FROM bd.VI_ITEMS;
+	</select>
 
-    
-    
+	<resultMap type='Item' id='ItemResult'>
+		<id property='id' column='id' />
+		<result property='name' column='nombre' />
+		<result property='description' column='descripcion' />
+		<result property='releaseDate' column='fechalanzamiento' />
+		<result property='pricePerDay' column='tarifapordia' />
+		<result property='rentFormat' column='formatorenta' />
+		<result property='gender' column='genero' />
+		<association property="itemType" javaType='TipoItemMapper'></association>
+	</resultMap>
+	    
 </mapper>
