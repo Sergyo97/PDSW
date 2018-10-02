@@ -21,6 +21,7 @@ package edu.eci.pdsw.samples.services.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -61,21 +62,16 @@ public class MyBatisExample {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
 
         SqlSession sqlss = sessionfact.openSession();
+        
+        /*Crear el mapper y usarlo: 
+        ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
+        cm...
+        */        
 
-        
-        //Crear el mapper y usarlo: 
-        //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class)
-        //cm...
-        
-        
-        
         sqlss.commit();
-        
-        
-        sqlss.close();
 
-        
-        
+        sqlss.close();
+ 
     }
 
 

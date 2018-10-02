@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemRentadoMapper">
+
+	<select parameterType="map" id="consultRentItems" resultMap="RentItemsResult">
+		SELECT * FROM bd.VI_ITEMRENTADO;
+	</select>
+
+	<resultMap type='RentItem' id='RentItemResult'>
+		<id property='id' column='id' />
+		<result property='startDateRent' column='fechainiciorenta' />
+		<result property='endDateRent' column='fechafinrenta' />
+		<association property="idClients" javaType="Cliente"></association>
+		<association property="idItems" javaType="Item"></association>
+	</resultMap>
+
+</mapper>
