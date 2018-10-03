@@ -28,11 +28,38 @@
 		    FROM VI_CLIENTES as c 
 		    left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
 		    left join VI_ITEMS as i on ir.ITEMS_id=i.id 
-		    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id WHERE c.documento=#{idcli}; 
+		    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+	</select>
+	
+	<select parameterType="map" id="consultarCliente" resultMap="ClientResult">
+			select    
+		    c.nombre as Clientes_nombre,
+		    c.documento,
+		    c.telefono,
+		    c.direccion,
+		    c.email,
+		    c.vetado,    
+		    ir.id as ItemRentado_id,
+		    ir.fechainiciorenta ,
+		    ir.fechafinrenta ,    
+		    i.id as Item_id,
+		    i.nombre as Item_nombre,
+		    i.descripcion as Item_descripcion,
+		    i.fechalanzamiento ,
+		    i.tarifaxdia ,
+		    i.formatorenta ,
+		    i.genero ,        
+		    ti.id as TipoItem_id,
+		    ti.descripcion as TipoItem_descripcion    
+		    FROM VI_CLIENTES as c 
+		    left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
+		    left join VI_ITEMS as i on ir.ITEMS_id=i.id 
+		    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id WHERE c.documento=#{idcli}
 	</select>
 	
 	<insert parameterType="map" id="agregarItemRentadoACliente">
-		INSERT INTO ITEM_RENTADO ();
+		INSERT INTO VI_ITEMRENTADO (CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta)
+			VALUES (#{idir},#{idit},#{fiir},#{ffir})
 	</insert>
 	
 	<resultMap type='Cliente' id='ClientResult'>

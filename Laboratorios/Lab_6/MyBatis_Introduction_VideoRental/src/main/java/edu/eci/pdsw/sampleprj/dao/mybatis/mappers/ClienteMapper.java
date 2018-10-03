@@ -12,7 +12,7 @@ import edu.eci.pdsw.samples.entities.Cliente;
  */
 public interface ClienteMapper {
     
-    public Cliente consultarClientes(@Param("idcli")int id); 
+    public Cliente consultarCliente(@Param("idcli")int id); 
     
     /**
      * Consultar todos los clientes
