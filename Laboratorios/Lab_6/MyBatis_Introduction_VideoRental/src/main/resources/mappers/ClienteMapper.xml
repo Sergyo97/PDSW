@@ -31,37 +31,15 @@
 		    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
 	</select>
 	
-	<select parameterType="map" id="consultarCliente" resultMap="ClientResult">
-			select    
-		    c.nombre as Clientes_nombre,
-		    c.documento,
-		    c.telefono,
-		    c.direccion,
-		    c.email,
-		    c.vetado,    
-		    ir.id as ItemRentado_id,
-		    ir.fechainiciorenta ,
-		    ir.fechafinrenta ,    
-		    i.id as Item_id,
-		    i.nombre as Item_nombre,
-		    i.descripcion as Item_descripcion,
-		    i.fechalanzamiento ,
-		    i.tarifaxdia ,
-		    i.formatorenta ,
-		    i.genero ,        
-		    ti.id as TipoItem_id,
-		    ti.descripcion as TipoItem_descripcion    
-		    FROM VI_CLIENTES as c 
-		    left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
-		    left join VI_ITEMS as i on ir.ITEMS_id=i.id 
-		    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id WHERE c.documento=#{idcli}
+	<select parameterType="Cliente" id="consultarCliente" resultMap="ClientResult">
+			SELECT * FROM VI_CLIENTES WHERE documento=#{idcli}
 	</select>
 	
-	<insert parameterType="map" id="agregarItemRentadoACliente">
+	<insert parameterType="ItemRentado" id="agregarItemRentadoACliente">
 		INSERT INTO VI_ITEMRENTADO (CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta)
 			VALUES (#{idir},#{idit},#{fiir},#{ffir})
 	</insert>
-	
+
 	<resultMap type='Cliente' id='ClientResult'>
 		<id property='documento' column='documento' />
 		<result property='nombre' column='Clientes_nombre' />
@@ -69,30 +47,7 @@
 		<result property='direccion' column='direccion' />
 		<result property='email' column='email' />
 		<result property='vetado' column='vetado' />
-		<collection property="rentados" ofType="ItemRentado" resultMap="RentItemResult" ></collection>
-	</resultMap>
-	
-	<resultMap type='Item' id='ItemResult'>
-		<id property='id' column='Item_id' />
-		<result property='nombre' column='Item_nombre' />
-		<result property='descripcion' column='Item_descripcion' />
-		<result property='fechalanzamiento' column='fechalanzamiento' />
-		<result property='tarifaxdia' column='tarifaxdia' />
-		<result property='formatoRenta' column='formatorenta' />
-		<result property='genero' column='genero' />
-		<association property="tipo" javaType='TipoItem'></association>
-	</resultMap>
-	
-	<resultMap type='ItemRentado' id='RentItemResult'>
-		<id property='id' column='ItemRentado_id' />
-		<result property='fechainiciorenta' column='fechainiciorenta' />
-		<result property='fechafinrenta' column='fechafinrenta' />
-		<association property="item" javaType="Item"></association>
-	</resultMap>
-	
-	<resultMap type='TipoItem' id='TypeItemResult'>
-		<id property='id' column='TipoItem_id' />
-		<result property='description' column='TipoItem_descripcion' />
+		<collection property="rentados" ofType="ItemRentado" resultMap="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.RentItemResult" ></collection>
 	</resultMap>
 
 </mapper>

@@ -29,7 +29,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper;
-import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemRentadoMapper;
+import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper;
+import edu.eci.pdsw.samples.entities.Item;
+import edu.eci.pdsw.samples.entities.TipoItem;
 
 /**
  *
@@ -62,19 +64,24 @@ public class MyBatisExample {
      * @param args
      * @throws SQLException 
      */
-    public static void main(String args[]) throws SQLException {
+    @SuppressWarnings("deprecation")
+	public static void main(String args[]) throws SQLException {
     	
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
         
-        //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
+        ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
         //System.out.println(cm.consultarCliente(100));
-        //System.out.println(cm.consultarClientes());
+        System.out.println(cm.consultarClientes());
         
-        ItemRentadoMapper irm = sqlss.getMapper(ItemRentadoMapper.class);
-        irm.agregarItemRentadoACliente(100, 5, new Date(1022018), new Date(10102018));
-
-
+        //cm.agregarItemRentadoACliente(100, 121, new Date(1022018), new Date(10102018));
+        
+        //ItemMapper im = sqlss.getMapper(ItemMapper.class);
+        //im.insertarItem(new Item(new TipoItem(3, "Juego"), 15, "Fortnite", "The best of the best", new Date(2017, 07, 25), 0, "Digital", "BattleRoyale"));
+        //im.deleteItem(14);
+        //System.out.println(im.consultarItem(15));
+        //System.out.println(im.consultarItems());
+        
         sqlss.commit();
         sqlss.close();
  
